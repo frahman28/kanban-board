@@ -1,0 +1,184 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.app-name {
+    font-size: 28px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: bold;
+}
+
+.has-background-purple {
+    background-color: #4f3e5f;
+}
+
+.has-gradient-text {
+    background: -webkit-linear-gradient(white, white);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+input {
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+
+.board {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    // Override Automatic Minimum Size
+    // https://stackoverflow.com/questions/36247140/why-dont-flex-items-shrink-past-content-size
+    min-width: 0;
+    min-height: 0;
+
+    .board-bar {
+        background: rgba(gray, 0.5);
+        padding: 8px 15px;
+    
+        .board-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+        }
+    }
+
+    .board-wrapper {
+        display: flex;
+        flex-grow: 1;
+        overflow-x: auto;
+
+        .board-columns {
+            display: flex;
+            flex-grow: 1;
+
+            .board-column {
+                display: flex;
+                flex-direction: column;
+                flex-grow: 1;
+                flex-basis: 0; 
+
+                min-width: 300px;
+                margin: 50px;
+                padding: 25px;
+
+                border-radius: 9px;
+
+                background: rgba(white, 0.5);
+
+                &:not(:first-child) {
+                    margin-left: 0;
+                }
+
+                .column-title {
+                    color: white;
+                    font-size: 20px;
+                    font-weight: 800;
+                    font-family: 'Oswald', sans-serif;
+                    text-transform: uppercase;
+                    margin-bottom: 20px;
+                    background: transparent;
+                    border: none;
+                }
+            }
+
+            .board-add-column {
+                display: flex;
+                flex-direction: column;
+                flex-grow: 1;
+                flex-basis: 0; 
+
+                min-width: 300px;
+                max-height: 50px;
+                margin: 50px;
+                padding: 15px;
+                text-align: center;
+
+                border-radius: 9px;
+
+                .add-column {
+                    background: rgba(white, 0.5);
+                }
+
+                .add-column :hover{
+                    background: rgba(white, 0.8);
+                }
+
+                &:not(:first-child) {
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+}
+
+.tasks-container {
+    flex-grow: 1;
+    overflow-y: auto; 
+
+    .board-add-task {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        flex-basis: 0; 
+        padding: 5px 12px;
+        background: white;
+        text-align: center;
+        
+        margin-bottom: 5px;
+    
+        box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.05),
+        0 3px 14px 2px rgba(0, 0, 0, 0.05);
+    
+        .add-task {
+            background: rgba(white, 0.5);
+            border: #ddd;
+        }
+    
+        .add-task :hover{
+            background: rgba(white, 0.8);
+        }
+    
+        &:not(:first-child) {
+            margin-left: 0;
+        }
+    }
+}
+
+.task {
+    display: flex;
+    padding: 15px 12px;
+    background: white;
+    border-bottom: solid 1px #ddd;
+    border-radius: 4px;
+
+    margin-bottom: 15px;
+
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.05),
+    0 3px 14px 2px rgba(0, 0, 0, 0.05);
+}
+
+.cdk-drag-preview {
+    box-sizing: border-box;
+    border-radius: 4px;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+                0 8px 10px 1px rgba(0, 0, 0, 0.14),
+                0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+    opacity: 0;
+}
+
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.tasks-container.cdk-drop-list-dragging .task:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}

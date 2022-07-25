@@ -1,0 +1,49 @@
+<div class="root">
+    <div class="navbar has-background-purple">
+      <div class="navbar-brand">
+        <div class="navbar-item">
+          <h1 class="app-name has-gradient-text">kanban - Example Board</h1>
+        </div>
+      </div>
+    </div>
+  
+    <div class="board">
+  
+      <div class="board-wrapper">
+  
+        <div class="board-columns" cdkDropListGroup>
+          <div class="board-column" *ngFor="let column of columns;let i=index;">
+  
+            <div>
+              <input class="column-title" type="text" id= "{{ column.name }}" name= "{{ column.name }}" value="{{ column.name }}" (change)="updateColumn(i, $event)">
+            </div>
+  
+            <div class="tasks-container"
+            cdkDropList
+            [cdkDropListData]="column.tasks_name"
+            (cdkDropListDropped)="drop($event)">
+              <div class="task" *ngFor="let item of column.tasks_name;let j = index;" cdkDrag>
+                <input type="text" id="{{ item }}" name="{{ item }}" value="{{ item }}" (change)="updateTask(i, j, $event)">
+              </div> 
+
+              <div class="board-add-task">
+                <button class="add-task" (click)="addNewTask(i)">
+                  + ADD TASK
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="board-add-column">
+            <button class="add-column" (click)="addNewColumn()">
+                + ADD COLUMN
+            </button>
+          </div>
+  
+        </div>
+  
+      </div>
+  
+    </div>
+  
+</div>
